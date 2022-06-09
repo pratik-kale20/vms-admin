@@ -1,0 +1,33 @@
+<nav class="fixed-top navbar navbar-expand-lg bg-dark">
+    <div class="container-fluid">
+        <img class="logo" src="../../assets/logo.svg" alt="Logo">
+      <a class="ms-2 navbar-brand text-white font-bold fw-bold title" href="#">Visitor Management System</a>
+      <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-three-dots-vertical text-white" viewBox="0 0 16 16">
+            <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+          </svg>    
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          
+            <li class="nav-item">
+            <a class="nav-link active text-white fw-bold" aria-current="page" [routerLink]="['/home']">Add New</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link active text-white fw-bold" aria-current="page" [routerLink]="['/view']">View</a>
+          </li>
+
+          <li class="nav-item mob">
+            <a class="nav-link text-white fw-bold" href="#">Logout</a>
+          </li>
+          
+        </ul> 
+     
+        <div class="desktop">
+            <div class="border-start border-white border-1 d-inline-block"><button class="btn btn-danger ms-2" type="submit">Logout</button></div>
+        </div>
+    </div>
+  
+    </div>
+  </nav>
