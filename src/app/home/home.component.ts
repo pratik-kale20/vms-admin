@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-
+import { DatabaseService } from '../service/database.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -24,14 +24,14 @@ export class HomeComponent implements OnInit {
     }
   )
 
-  constructor() { }
+  constructor(private db: DatabaseService) { }
 
   ngOnInit(): void {
   }
 
   doRegister(regForm:FormGroup){
     console.log(regForm)
-
+    this.db.addData(regForm);
   }
 
 }
