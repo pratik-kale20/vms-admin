@@ -95,28 +95,6 @@
                           <label for="formFile" class="form-control-label">Upload employee details in .csv format. Max file size 10 MB</label><br>
                           <input formControlName="empDetails" class="ml-2" type="file" id="formFile" accept=".csv">
                         </div>
-
-                        <script>
-                          var file = document.getElementById('formFile');
-
-file.onchange = function(e) {
-  var ext = this.value.match(/\.([^\.]+)$/)[1];
-  switch (ext) {
-    case 'csv':
-      alert('Allowed');
-      break;
-    default:
-      alert('Not allowed');
-      this.value = '';
-  }
-};
-                        </script>
-
-
-                      <!-- </div>
-                      <div class="row"> -->
-
-
                       </div>
                     </div>
                     <div class="d-flex justify-content-center mt-3">

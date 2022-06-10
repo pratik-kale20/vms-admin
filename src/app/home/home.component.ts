@@ -27,6 +27,7 @@ export class HomeComponent implements OnInit {
   constructor(private db: DatabaseService) { }
 
   ngOnInit(): void {
+
   }
 
   doRegister(regForm:FormGroup){
