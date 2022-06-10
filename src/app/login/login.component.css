@@ -5,9 +5,9 @@
     background-position: center;
     overflow-x: hidden;
     overflow-y: hidden !important;
-    -webkit-background-size: cover; 
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     position: relative;
 
@@ -22,26 +22,18 @@
     border-radius: 10px;
 }
 
-.btn-primary{
-   background-color: #76479a;
-   border-color:#76479a;
-}
 
-.btn-primary:hover{
-    background-color: #8b62ab;
-   border-color:#76479a;
-}
 
 @media screen and (max-width:992px) {
     .login{
-        max-width:70% !important; 
+        max-width:70% !important;
     }
-    
+
 }
 
 @media screen and (max-width:440px) {
     .login{
-        max-width:85% !important; 
+        max-width:85% !important;
     }
 }
 
@@ -53,9 +45,9 @@
     background-position: center;
     overflow-x: hidden;
     overflow-y: hidden !important;
-    -webkit-background-size: cover; 
-    -moz-background-size: cover; 
-    -o-background-size: cover; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
     position: relative;
 
@@ -82,14 +74,14 @@
 
 @media screen and (max-width:992px) {
     .login{
-        max-width:70% !important; 
+        max-width:70% !important;
     }
-    
+
 }
 
 @media screen and (max-width:440px) {
     .login{
-        max-width:85% !important; 
+        max-width:85% !important;
     }
 }
 
