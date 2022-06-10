@@ -15,14 +15,14 @@
                   </div>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form [formGroup]="dataForm" (ngSubmit)="doRegister(dataForm)">
                     <h6 class="heading-small text-muted mb-4">COMPANY INFORMATION</h6>
                     <div class="pl-lg-4">
                       <div class="row">
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-comp-name">Name of Company</label>
-                            <input type="text" formControlName="comp-name" id="input-comp-name" required minlength="4" class="form-control form-control-alternative" placeholder="Enter name of the company">
+                            <input type="text" formControlName="compName" id="input-comp-name" required minlength="4" class="form-control form-control-alternative" placeholder="Enter name of the company">
                           </div>
                         </div>
                         <div class="col-lg-6">
@@ -49,13 +49,13 @@
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-pin">Pin Code</label>
-                            <input type="text" formControlName="input-pin" id="input-pin"  required maxlength="6" class="form-control form-control-alternative" placeholder="Enter pin code" >
+                            <input type="text" formControlName="pin" id="input-pin"  required maxlength="6" class="form-control form-control-alternative" placeholder="Enter pin code" >
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-address">Address</label>
-                            <textarea id="input-address" rows="4" cols="50" class="form-control form-control-alternative" required minlength="30" placeholder="Enter address of the company"></textarea>
+                            <textarea id="input-address" formControlName="address" rows="4" cols="50" class="form-control form-control-alternative" required minlength="30" placeholder="Enter address of the company"></textarea>
                           </div>
                         </div>
 
@@ -73,14 +73,14 @@
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
-                          <label class="form-control-label" for="input-email">Email</label>
-                          <input type="email" formControlName="lno" id="input-email" required class="form-control form-control-alternative" placeholder="Enter email of the person">
+                          <label class="form-control-label" for="input-pemail">Email</label>
+                          <input type="email" formControlName="pemail" id="input-pemail" required class="form-control form-control-alternative" placeholder="Enter email of the person">
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group focused">
-                          <label class="form-control-label" for="input-first-name">Mobile number</label>
-                          <input type="number" formControlName="pno" id="input-first-name" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" required class="form-control form-control-alternative" placeholder="Enter mobile number of the person" >
+                          <label class="form-control-label" for="input-ppno">Mobile number</label>
+                          <input type="number" formControlName="ppno" id="input-ppno" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" required class="form-control form-control-alternative" placeholder="Enter mobile number of the person" >
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@
 
                         <div class="mb-3">
                           <label for="formFile" class="form-control-label">Upload employee details in .csv format. Max file size 10 MB</label><br>
-                          <input class="ml-2" type="file" id="formFile" accept=".csv">
+                          <input formControlName="empDetails" class="ml-2" type="file" id="formFile" accept=".csv">
                         </div>
 
                         <script>
@@ -120,7 +120,7 @@ file.onchange = function(e) {
                       </div>
                     </div>
                     <div class="d-flex justify-content-center mt-3">
-                        <button class="btn btn-primary" >Submit</button>
+                        <button type="submit" class="btn btn-primary" >Submit</button>
                         <!-- <button class="btn btn-primary" [routerLink]="['../havaldarprofile']" >Back</button> -->
                       </div>
                   </form>
