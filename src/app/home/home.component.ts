@@ -8,6 +8,7 @@ import { DatabaseService } from '../service/database.service';
 })
 export class HomeComponent implements OnInit {
 
+  filePath: any;
   dataForm = new FormGroup (
     {
       compName: new FormControl('', Validators.compose([Validators.required])),
@@ -20,7 +21,6 @@ export class HomeComponent implements OnInit {
       pemail: new FormControl('',Validators.compose([Validators.required])),
       ppno: new FormControl('',Validators.compose([Validators.required])),
       empDetails: new FormControl('',Validators.compose([Validators.required])),
-
     }
   )
 
@@ -32,11 +32,20 @@ export class HomeComponent implements OnInit {
 
   doRegister(regForm:FormGroup){
     console.log(regForm)
-    this.db.addData(regForm);
+    this.db.addData(regForm,this.filePath);
   }
 
-  checkSize(args:any){
-    console.log(args.fileData.size)
+  async checkSize(event: any){
+    let size = event.target.files[0].size * (10 ** (-6))
+    if(size < 10 && size > 0 && event.target.files[0].type == "text/csv"){
+      this.filePath = event.target.files[0];
+      // await this.db.addCsvFun(event.target.files[0].name,this.filePath)
+      console.log(event.target.files[0])
+    }
+    else{
+      console.log("not a CSv file or out of range")
+    }
+      
   }
 
 }

@@ -3,7 +3,7 @@ import { firstValueFrom } from 'rxjs';
 import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { formatCurrency } from '@angular/common';
-
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 @Injectable({
   providedIn: 'root'
 })
@@ -12,13 +12,15 @@ export class DatabaseService {
   db: AngularFirestore;
   private dataCollection: AngularFirestoreCollection<any>;
   userEmail: any;
+  urlCsv: any;
 
-  constructor(db: AngularFirestore,private afAuth: AngularFireAuth) { 
+  constructor(db: AngularFirestore,private afAuth: AngularFireAuth ,  public fireStorage: AngularFireStorage) { 
     this.db = db;
     this.dataCollection = db.collection<any>('users');
   }
 
-  async addData(Form: any) {
+  async addData(Form: any, filePath: any) {
+    await this.addCsvFun(filePath, "/" + Form.value.compName + "_" + filePath.name)
     const totalUsersSnapshot = firstValueFrom(await this.db
       .collection<any>('users')
       .doc('totalUsers')
@@ -36,7 +38,7 @@ export class DatabaseService {
       pname: Form.value.pname,
       pemail: Form.value.pemail,
       ppno: Form.value.ppno,
-      empDetails: Form.value.empDetails
+      empDetails: this.urlCsv
     };
     const newUser = this.db
       .collection<any>('users')
@@ -54,5 +56,15 @@ export class DatabaseService {
       }).catch((error) => {
         console.log(error);
       });
+  }
+
+  async addCsvFun(orgPath: any, filePath: any) {
+    this.urlCsv = await (
+      await this.fireStorage.upload(
+          filePath,
+        orgPath
+      )
+    ).ref.getDownloadURL();
+    console.log(this.urlCsv)
   }
 }
