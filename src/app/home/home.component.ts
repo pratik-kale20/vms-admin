@@ -35,4 +35,8 @@ export class HomeComponent implements OnInit {
     this.db.addData(regForm);
   }
 
+  checkSize(args:any){
+    console.log(args.fileData.size)
+  }
+
 }
