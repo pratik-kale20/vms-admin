@@ -93,7 +93,7 @@
 
                         <div class="mb-3">
                           <label for="formFile" class="form-control-label">Upload employee details in .csv format. Max file size 10 MB</label><br>
-                          <input formControlName="empDetails" class="ml-2" type="file" id="formFile" accept=".csv">
+                          <input formControlName="empDetails" class="ml-2" type="file" id="formFile" (change) = "checkSize($event)" accept=".csv">
                         </div>
                       </div>
                     </div>
