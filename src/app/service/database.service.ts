@@ -31,7 +31,6 @@ export class DatabaseService {
     const dataSend = {
       userEmail: Form.value.email,
       userId: 111111 + totalUsers + 1,
-      userPassword: '123456',
       compName: Form.value.compName,
       pno: Form.value.pno,
       city: Form.value.city,
@@ -40,7 +39,8 @@ export class DatabaseService {
       pname: Form.value.pname,
       pemail: Form.value.pemail,
       ppno: Form.value.ppno,
-      empDetails: []
+      empDetails: [],
+      visitorDetails: []
     };
     const newUser = this.db
       .collection<any>('users')
