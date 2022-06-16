@@ -4,6 +4,8 @@ import { AngularFireAuth } from "@angular/fire/compat/auth";
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/compat/firestore';
 import { formatCurrency } from '@angular/common';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import firebase from 'firebase/compat/app';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -20,7 +22,7 @@ export class DatabaseService {
   }
 
   async addData(Form: any, filePath: any) {
-    await this.addCsvFun(filePath, "/" + Form.value.compName + "_" + filePath.name)
+    //await this.addCsvFun(filePath, "/" + Form.value.compName + "_" + filePath.name)
     const totalUsersSnapshot = firstValueFrom(await this.db
       .collection<any>('users')
       .doc('totalUsers')
@@ -29,7 +31,6 @@ export class DatabaseService {
     const dataSend = {
       userEmail: Form.value.email,
       userId: 111111 + totalUsers + 1,
-      userPassword: '123456',
       compName: Form.value.compName,
       pno: Form.value.pno,
       city: Form.value.city,
@@ -38,12 +39,16 @@ export class DatabaseService {
       pname: Form.value.pname,
       pemail: Form.value.pemail,
       ppno: Form.value.ppno,
-      empDetails: this.urlCsv
+      empDetails: [],
+      visitorDetails: []
     };
     const newUser = this.db
       .collection<any>('users')
       .doc((111111 + totalUsers + 1).toString())
       .set(dataSend);
+    for(let i =0 ;i<Form.value.empDetails.length - 1;i++) {
+      await this.addEmployee(Form.value.empDetails[i],111111 + totalUsers + 1)
+    } 
     const snapshot = this.db
       .collection<any>('users')
       .doc('totalUsers')
@@ -55,6 +60,15 @@ export class DatabaseService {
         // this.SetUserData(result.user);
       }).catch((error) => {
         console.log(error);
+      });
+  }
+
+  async addEmployee(data: any,id: any) {
+    this.db
+      .collection<any>('users')
+      .doc(id.toString())
+      .update({
+        empDetails: firebase.firestore.FieldValue.arrayUnion(data),
       });
   }
 
