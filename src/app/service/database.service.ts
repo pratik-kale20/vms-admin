@@ -40,7 +40,10 @@ export class DatabaseService {
       pemail: Form.value.pemail,
       ppno: Form.value.ppno,
       empDetails: [],
-      visitorDetails: []
+      visitorDetails: [],
+      checkIns: 0,
+      checkOuts: 0,
+      DailyVisitors: 0
     };
     const newUser = this.db
       .collection<any>('users')

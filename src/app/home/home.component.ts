@@ -13,14 +13,14 @@ export class HomeComponent implements OnInit {
   dataForm = new FormGroup (
     {
       compName: new FormControl('', Validators.compose([Validators.required])),
-      email: new FormControl('',Validators.compose([Validators.required])),
-      pno: new FormControl('',Validators.compose([Validators.required])),
+      email: new FormControl('',Validators.compose([Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])),
+      pno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10)])),
       city: new FormControl('',Validators.compose([Validators.required])),
-      pin: new FormControl('',Validators.compose([Validators.required])),
+      pin: new FormControl('',Validators.compose([Validators.required,Validators.minLength(6)])),
       address: new FormControl('',Validators.compose([Validators.required])),
       pname: new FormControl('',Validators.compose([Validators.required])),
-      pemail: new FormControl('',Validators.compose([Validators.required])),
-      ppno: new FormControl('',Validators.compose([Validators.required])),
+      pemail: new FormControl('',Validators.compose([Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])),
+      ppno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10)])),
       empDetails: new FormControl([{}]),
     }
   )

@@ -22,13 +22,27 @@
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-comp-name">Name of Company</label>
-                            <input type="text" formControlName="compName" id="input-comp-name" required minlength="4" class="form-control form-control-alternative" placeholder="Enter name of the company">
+                            <input type="text" formControlName="compName" id="input-comp-name" required class="form-control form-control-alternative" placeholder="Enter name of the company">
+
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['compName'].invalid && (dataForm.controls['compName'].dirty || dataForm.controls['compName'].touched)">
+                              <small *ngIf="dataForm.controls['compName'].errors?.['required']" class="text-danger">Company name is required</small>
+                          </span>
+
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group">
                             <label class="form-control-label" for="input-email">Email Address</label>
                             <input type="email" formControlName="email" id="input-email" required class="form-control form-control-alternative" placeholder="Enter email of the company">
+
+
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['email'].invalid && (dataForm.controls['email'].dirty || dataForm.controls['email'].touched) ">
+                              <div>
+                              <small *ngIf="dataForm.controls['email'].errors?.['required']" class="text-danger">Email is required</small>
+                              <small *ngIf="dataForm.controls['email'].errors?.['pattern']" class="text-danger">Please provide a valid email address</small>
+                            </div>
+                          </span>
+
                           </div>
                         </div>
                       </div>
@@ -36,7 +50,15 @@
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-pno">Phone Number</label>
-                            <input type="number" formControlName="pno" id="input-pno"  oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" required maxlength="10" class="form-control form-control-alternative" placeholder="Enter phone number of the company" >
+                            <input type="number" formControlName="pno" id="input-pno" class="form-control form-control-alternative" placeholder="Enter phone number of the company" >
+
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['pno'].invalid && (dataForm.controls['pno'].dirty || dataForm.controls['pno'].touched) ">
+                              <div>
+                              <small *ngIf="dataForm.controls['pno'].errors?.['required']" class="text-danger">Phone number is required</small>
+                              <small *ngIf="dataForm.controls['pno'].hasError('minlength')" class="text-danger">Please provide a valid phone number</small>
+                            </div>
+                          </span>
+
                           </div>
                         </div>
 
@@ -44,18 +66,37 @@
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-city">City</label>
                             <input type="text" formControlName="city" id="input-city" required class="form-control form-control-alternative" placeholder="Enter city of the company" >
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['city'].invalid && (dataForm.controls['city'].dirty || dataForm.controls['city'].touched) ">
+                              <div>
+                              <small *ngIf="dataForm.controls['city'].errors?.['required']" class="text-danger">City is required</small>
+                            </div>
+                          </span>
+
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-pin">Pin Code</label>
                             <input type="text" formControlName="pin" id="input-pin"  required maxlength="6" class="form-control form-control-alternative" placeholder="Enter pin code" >
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['pin'].invalid && (dataForm.controls['pin'].dirty || dataForm.controls['pin'].touched) ">
+                              <div>
+                              <small *ngIf="dataForm.controls['pin'].errors?.['required']" class="text-danger">Pin code is required</small>
+                              <small *ngIf="dataForm.controls['pin'].errors?.['minlength']" class="text-danger">Please provide a valid pin code</small>
+                            </div>
+                          </span>
+
                           </div>
                         </div>
                         <div class="col-lg-6">
                           <div class="form-group focused">
                             <label class="form-control-label" for="input-address">Address</label>
                             <textarea id="input-address" formControlName="address" rows="4" cols="50" class="form-control form-control-alternative" required minlength="30" placeholder="Enter address of the company"></textarea>
+                            <span class="m-0 p-0" *ngIf="dataForm.controls['address'].invalid && (dataForm.controls['address'].dirty || dataForm.controls['address'].touched) ">
+                              <div>
+                              <small *ngIf="dataForm.controls['address'].errors?.['required']" class="text-danger">Address is required</small>
+                            </div>
+                          </span>
+
                           </div>
                         </div>
 
@@ -69,18 +110,39 @@
                         <div class="form-group focused">
                           <label class="form-control-label" for="input-pname">Name</label>
                           <input type="text" formControlName="pname" id="input-pname" required class="form-control form-control-alternative" placeholder="Enter name of the person">
+                          <span class="m-0 p-0" *ngIf="dataForm.controls['pname'].invalid && (dataForm.controls['pname'].dirty || dataForm.controls['pname'].touched) ">
+                            <div>
+                            <small *ngIf="dataForm.controls['pname'].errors?.['required']" class="text-danger">Name is required</small>
+                          </div>
+                        </span>
+
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group">
                           <label class="form-control-label" for="input-pemail">Email</label>
                           <input type="email" formControlName="pemail" id="input-pemail" required class="form-control form-control-alternative" placeholder="Enter email of the person">
+
+                          <span class="m-0 p-0" *ngIf="dataForm.controls['pemail'].invalid && (dataForm.controls['pemail'].dirty || dataForm.controls['pemail'].touched) ">
+                            <div>
+                            <small *ngIf="dataForm.controls['pemail'].errors?.['required']" class="text-danger">Email is required</small>
+                            <small *ngIf="dataForm.controls['pemail'].errors?.['pattern']" class="text-danger">Please provide a valid email address</small>
+                          </div>
+                        </span>
+
                         </div>
                       </div>
                       <div class="col-lg-6">
                         <div class="form-group focused">
                           <label class="form-control-label" for="input-ppno">Mobile number</label>
-                          <input type="number" formControlName="ppno" id="input-ppno" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" maxlength="10" required class="form-control form-control-alternative" placeholder="Enter mobile number of the person" >
+                          <input type="number" formControlName="ppno" id="input-ppno" required class="form-control form-control-alternative" placeholder="Enter mobile number of the person" >
+
+                          <span class="m-0 p-0" *ngIf="dataForm.controls['ppno'].invalid && (dataForm.controls['ppno'].dirty || dataForm.controls['ppno'].touched) ">
+                            <div>
+                            <small *ngIf="dataForm.controls['ppno'].errors?.['required']" class="text-danger">Mobile number is required</small>
+                            <small *ngIf="dataForm.controls['ppno'].errors?.['minlength']" class="text-danger">Please provide a valid mobile number</small>
+                          </div>
+                        </span>
                         </div>
                       </div>
                     </div>
