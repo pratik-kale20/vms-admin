@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
 import { DatabaseService } from '../service/database.service';
 @Component({
   selector: 'app-home',
@@ -24,9 +25,16 @@ export class HomeComponent implements OnInit {
       empDetails: new FormControl([{}]),
     }
   )
+  public myAngularxQrCode: string;
+  public qrCodeDownloadLink: SafeUrl | undefined;
+  constructor(private db: DatabaseService) {
+    this.myAngularxQrCode = 'https://pratikkale.in';
+  }
 
-  constructor(private db: DatabaseService) { }
-
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+    console.log(url)
+  }
   ngOnInit(): void {
 
   }
@@ -70,7 +78,7 @@ export class HomeComponent implements OnInit {
       console.log("not a CSv file or out of range")
     }
 
-      
+
   }
 
 }
