@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { SafeUrl } from '@angular/platform-browser';
 import { DatabaseService } from '../service/database.service';
 @Component({
   selector: 'app-home',
@@ -7,7 +8,9 @@ import { DatabaseService } from '../service/database.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  hidden = false;
+  qrValue! : string;
+  public qrCodeDownloadLink: SafeUrl = "";
   filePath: any;
   csvData: any;
   dataForm = new FormGroup (
@@ -25,15 +28,31 @@ export class HomeComponent implements OnInit {
     }
   )
 
-  constructor(private db: DatabaseService) { }
+
+
+  constructor(private db: DatabaseService) {
+
+  }
+  onChangeURL(url: SafeUrl) {
+    this.qrCodeDownloadLink = url;
+  }
+
+  showQr(){
+    this.hidden = !this.hidden;
+    this.qrValue = "https://pratikkale.in";
+  }
 
   ngOnInit(): void {
 
   }
 
-  doRegister(regForm:FormGroup){
+ async doRegister(regForm:FormGroup){
     console.log(regForm)
-    this.db.addData(regForm,this.filePath);
+    if(regForm.valid){
+      await this.db.addData(regForm,this.filePath);
+      this.showQr() 
+    }
+    console.log("Invalid Data")
   }
 
   async checkSize(event: any){
@@ -70,7 +89,7 @@ export class HomeComponent implements OnInit {
       console.log("not a CSv file or out of range")
     }
 
-      
+
   }
 
 }
