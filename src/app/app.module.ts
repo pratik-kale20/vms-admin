@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage/';
 import { QRCodeModule } from 'angularx-qrcode';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +31,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireStorageModule,
-    QRCodeModule,
+    QRCodeModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

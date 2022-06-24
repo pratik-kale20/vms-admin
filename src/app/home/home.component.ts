@@ -8,7 +8,9 @@ import { DatabaseService } from '../service/database.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
+  hidden = false;
+  qrValue! : string;
+  public qrCodeDownloadLink: SafeUrl = "";
   filePath: any;
   csvData: any;
   dataForm = new FormGroup (
@@ -25,23 +27,32 @@ export class HomeComponent implements OnInit {
       empDetails: new FormControl([{}]),
     }
   )
-  public myAngularxQrCode: string;
-  public qrCodeDownloadLink: SafeUrl | undefined;
-  constructor(private db: DatabaseService) {
-    this.myAngularxQrCode = 'https://pratikkale.in';
-  }
 
+
+
+  constructor(private db: DatabaseService) {
+
+  }
   onChangeURL(url: SafeUrl) {
     this.qrCodeDownloadLink = url;
-    console.log(url)
   }
+
+  showQr(){
+    this.hidden = !this.hidden;
+    this.qrValue = "https://pratikkale.in";
+  }
+
   ngOnInit(): void {
 
   }
 
-  doRegister(regForm:FormGroup){
+ async doRegister(regForm:FormGroup){
     console.log(regForm)
-    this.db.addData(regForm,this.filePath);
+    if(regForm.valid){
+      await this.db.addData(regForm,this.filePath);
+      this.showQr() 
+    }
+    console.log("Invalid Data")
   }
 
   async checkSize(event: any){
