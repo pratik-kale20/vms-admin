@@ -64,6 +64,8 @@ export class DatabaseService {
       }).catch((error) => {
         console.log(error);
       });
+    
+    return (111111 + totalUsers + 1).toString()
   }
 
   async addEmployee(data: any,id: any) {
