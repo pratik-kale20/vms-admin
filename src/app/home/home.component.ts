@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   public qrCodeDownloadLink: SafeUrl = "";
   filePath: any;
   csvData: any;
+  userId: any;
   dataForm = new FormGroup (
     {
       compName: new FormControl('', Validators.compose([Validators.required])),
@@ -39,7 +40,7 @@ export class HomeComponent implements OnInit {
 
   showQr(){
     this.hidden = !this.hidden;
-    this.qrValue = "https://pratikkale.in";
+    this.qrValue = "https://u-smartvms.nelify.app/vverify/"+this.userId;
   }
 
   ngOnInit(): void {
@@ -49,10 +50,12 @@ export class HomeComponent implements OnInit {
  async doRegister(regForm:FormGroup){
     console.log(regForm)
     if(regForm.valid){
-      await this.db.addData(regForm,this.filePath);
+      this.userId = await this.db.addData(regForm,this.filePath);
       this.showQr() 
     }
-    console.log("Invalid Data")
+    else{
+      console.log("Invalid Data")
+    }
   }
 
   async checkSize(event: any){
