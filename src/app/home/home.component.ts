@@ -18,13 +18,13 @@ export class HomeComponent implements OnInit {
     {
       compName: new FormControl('', Validators.compose([Validators.required])),
       email: new FormControl('',Validators.compose([Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])),
-      pno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10)])),
+      pno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10),Validators.pattern('^[0-9]*$')])),
       city: new FormControl('',Validators.compose([Validators.required])),
-      pin: new FormControl('',Validators.compose([Validators.required,Validators.minLength(6)])),
+      pin: new FormControl('',Validators.compose([Validators.required,Validators.minLength(6),Validators.maxLength(6),Validators.pattern('^[0-9]*$')])),
       address: new FormControl('',Validators.compose([Validators.required])),
       pname: new FormControl('',Validators.compose([Validators.required])),
       pemail: new FormControl('',Validators.compose([Validators.required,Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$")])),
-      ppno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10)])),
+      ppno: new FormControl('',Validators.compose([Validators.required,Validators.minLength(10),Validators.maxLength(10),Validators.pattern('^[0-9]*$')])),
       empDetails: new FormControl([{}]),
     }
   )
