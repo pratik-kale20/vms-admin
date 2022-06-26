@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { DatabaseService } from '../service/database.service';
 
 @Component({
   selector: 'app-view',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewComponent implements OnInit {
 
-  constructor() { }
+  data: any;
 
-  ngOnInit(): void {
+  constructor(public db: DatabaseService) { }
+
+  async ngOnInit() {
+      await this.db.getUsers()
+      this.data = this.db.data
+      console.log(this.data)
   }
 
 }

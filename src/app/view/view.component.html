@@ -1,2 +1,19 @@
 <app-nav> </app-nav>
-<p>view works!</p>
+<table>
+	<thead>
+	<tr>
+        <th>ID</th>
+        <th >Company Name</th>
+        <th >Address</th>
+        <th>Email</th>
+	</tr>
+	</thead>
+	<tbody >
+	<tr  *ngFor="let user of data, let k = index" >
+        <td>{{user.id}}</td>
+        <td>{{user.cName}}</td>
+        <td>{{user.cAddr}}</td>
+        <td>{{user.cEmail}}</td>
+	</tr>
+	</tbody>
+</table>

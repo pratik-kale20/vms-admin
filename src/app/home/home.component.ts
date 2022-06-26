@@ -91,8 +91,6 @@ export class HomeComponent implements OnInit {
     else{
       console.log("not a CSv file or out of range")
     }
-
-
   }
 
 }

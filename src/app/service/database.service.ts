@@ -15,6 +15,9 @@ export class DatabaseService {
   private dataCollection: AngularFirestoreCollection<any>;
   userEmail: any;
   urlCsv: any;
+  Ids: any;
+  user: any;
+  data: any;
 
   constructor(db: AngularFirestore,private afAuth: AngularFireAuth ,  public fireStorage: AngularFireStorage) { 
     this.db = db;
@@ -85,5 +88,16 @@ export class DatabaseService {
       )
     ).ref.getDownloadURL();
     console.log(this.urlCsv)
+  }
+
+  async getUsers(){
+    this.data = []
+    const totalUsersSnapshot = firstValueFrom(await this.db
+      .collection<any>('users')
+      .get());
+    await (await totalUsersSnapshot).docs.forEach((doc) =>    
+      this.data[Number(doc.id) - 111112] = { "id" : doc.id ,"cName" : doc.data().compName, "cAddr" : doc.data().address, "cEmail": doc.data().userEmail}
+    )
+    return "done"
   }
 }
