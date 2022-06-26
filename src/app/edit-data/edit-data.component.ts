@@ -1,16 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { SafeUrl } from '@angular/platform-browser';
 import { DatabaseService } from '../service/database.service';
+
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-edit-data',
+  templateUrl: './edit-data.component.html',
+  styleUrls: ['./edit-data.component.css']
 })
-export class HomeComponent implements OnInit {
-  hidden = false;
-  qrValue! : string;
-  public qrCodeDownloadLink: SafeUrl = "";
+export class EditDataComponent implements OnInit {
   filePath: any;
   csvData: any;
   userId: any;
@@ -34,24 +31,17 @@ export class HomeComponent implements OnInit {
   constructor(private db: DatabaseService) {
 
   }
-  onChangeURL(url: SafeUrl) {
-    this.qrCodeDownloadLink = url;
-  }
-
-  showQr(){
-    this.hidden = !this.hidden;
-    this.qrValue = "https://u-smartvms.nelify.app/vverify/"+this.userId;
-  }
 
   ngOnInit(): void {
-
+    this.dataForm.controls['compName'].setValue('UsmartAI')
+    console.log(this.db.editData)
   }
+
 
  async doRegister(regForm:FormGroup){
     console.log(regForm)
     if(regForm.valid){
-      this.userId = await this.db.addData(regForm,this.filePath);
-      this.showQr() 
+      this.userId = await this.db.addData(regForm,this.filePath); 
     }
     else{
       console.log("Invalid Data")
@@ -92,5 +82,4 @@ export class HomeComponent implements OnInit {
       console.log("not a CSv file or out of range")
     }
   }
-
 }

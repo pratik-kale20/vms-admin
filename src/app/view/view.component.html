@@ -1,19 +1,48 @@
-<app-nav> </app-nav>
-<table>
-	<thead>
-	<tr>
-        <th>ID</th>
-        <th >Company Name</th>
-        <th >Address</th>
-        <th>Email</th>
-	</tr>
-	</thead>
-	<tbody >
-	<tr  *ngFor="let user of data, let k = index" >
-        <td>{{user.id}}</td>
-        <td>{{user.cName}}</td>
-        <td>{{user.cAddr}}</td>
-        <td>{{user.cEmail}}</td>
-	</tr>
-	</tbody>
-</table>
+<app-nav></app-nav>
+<div class="d-flex justify-content-center">
+    <table class="table table-hover ">
+        <thead>
+        <tr> 
+            <th>Security Code</th>
+            <th >Company Name</th>
+            <th>Company Email Id</th>
+            <th >Company Phone Number</th>
+            <th>Contact Person Name</th>
+            <th>Contact Person Email Id</th>
+            <th>Edit</th>
+            <th >Employee Details</th>     
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let user of data, let k = index" >
+            <td>{{user.id}}</td>
+            <td>{{user.cName}}</td>
+            <td>{{user.cEmail}}</td>
+            <td>{{user.cNo}}</td>
+            <td>{{user.pName}}</td>
+            <td>{{user.pEmail}}</td>
+            <td><button type="button" class="btn btn-primary" (click) = "editData(k)">EDIT</button></td>  
+            <td><button type="button" class="btn btn-primary" (click) = "showEmp(k)">EMPLOYEE DETAILS</button></td>  
+        </tr>
+        </tbody>
+    </table>
+</div>
+<!-- Emp details section -->
+<div class="d-flex justify-content-center" >
+    <table class="Emptable table-hover " [ngStyle] = "{'display' : display}">
+        <thead>
+        <tr>
+           <th>Employee Name</th>
+            <th>Designation</th> 
+            <th>Mobile Number</th>  
+        </tr>
+        </thead>
+        <tbody *ngFor="let emp of empDetails">
+        <tr>
+            <td>{{emp.name}}</td>
+            <td>{{emp.desig}}</td>
+            <td>{{emp.phone}}</td>     
+        </tr>
+        </tbody>
+    </table>
+</div>

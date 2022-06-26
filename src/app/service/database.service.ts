@@ -18,6 +18,7 @@ export class DatabaseService {
   Ids: any;
   user: any;
   data: any;
+  editData: any;
 
   constructor(db: AngularFirestore,private afAuth: AngularFireAuth ,  public fireStorage: AngularFireStorage) { 
     this.db = db;
@@ -96,7 +97,15 @@ export class DatabaseService {
       .collection<any>('users')
       .get());
     await (await totalUsersSnapshot).docs.forEach((doc) =>    
-      this.data[Number(doc.id) - 111112] = { "id" : doc.id ,"cName" : doc.data().compName, "cAddr" : doc.data().address, "cEmail": doc.data().userEmail}
+      this.data[Number(doc.id) - 111112] = { 
+        "id" : doc.id ,
+        "cName" : doc.data().compName,
+        "cEmail": doc.data().userEmail, 
+        "cNo" : doc.data().pno , 
+        "pName" : doc.data().pname , 
+        "pEmail" : doc.data().pemail ,
+        "empDetails" : doc.data().empDetails
+      }
     )
     return "done"
   }
