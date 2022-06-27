@@ -14,6 +14,7 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore/';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage/';
 import { QRCodeModule } from 'angularx-qrcode';
+import { EditDataComponent } from './edit-data/edit-data.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { QRCodeModule } from 'angularx-qrcode';
     LoginComponent,
     HomeComponent,
     NavComponent,
-    ViewComponent
+    ViewComponent,
+    EditDataComponent
   ],
   imports: [
     BrowserModule,
