@@ -44,7 +44,7 @@ export class DatabaseService {
       pemail: Form.value.pemail,
       ppno: Form.value.ppno,
       empDetails: [],
-      visitorDetails: [],
+      visitors: [],
       checkIns: 0,
       checkOuts: 0,
       DailyVisitors: 0
